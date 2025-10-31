@@ -2,10 +2,9 @@
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-// @ts-ignore: TS cannot find module/type declarations for side-effect CSS import in some setups
-import "./globals.css";
+// @ts-expect-error: TS cannot find module/type declarations for side-effect CSS import in some setups
+import "@/globals.css";
 
-// Impor Navbar dan Footer
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
