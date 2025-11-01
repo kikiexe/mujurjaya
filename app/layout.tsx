@@ -1,21 +1,19 @@
 // app/layout.tsx
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 // @ts-expect-error: TS cannot find module/type declarations for side-effect CSS import in some setups
-import "@/globals.css";
+import "./globals.css";
 
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Konfigurasi font Poppins
+const poppins = Poppins({
+  weight: ['400', '500', '600', '700'], // Pilih ketebalan font yang dibutuhkan
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-poppins", // Membuat CSS variable untuk font
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -31,11 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} font-sans antialiased`}
       >
-        <Navbar /> {/* <-- Tambahkan Navbar di sini */}
-        {children} {/* <-- Ini adalah isi dari setiap halaman (page.tsx) */}
-        <Footer /> {/* <-- Tambahkan Footer di sini */}
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );
