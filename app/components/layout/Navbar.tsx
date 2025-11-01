@@ -61,22 +61,22 @@ export default function Navbar() {
                 </li>
                 
                 <li>
-                  <a href="/about" className="relative group font-bold pb-1.5 text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out">
+                  <Link href="./about" className="relative group font-bold pb-1.5 text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out">
                     About
                     <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/product" className="relative group font-bold pb-1.5 text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out">
+                  <Link href="./product" className="relative group font-bold pb-1.5 text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out">
                     Product
                     <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/contact" className="relative group font-bold pb-1.5 text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out">
+                  <Link href="./contact" className="relative group font-bold pb-1.5 text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out">
                     Contact
                     <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
