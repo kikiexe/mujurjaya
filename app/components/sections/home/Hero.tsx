@@ -1,5 +1,6 @@
 // app/components/sections/home/Hero.tsx
 import Image from 'next/image';
+import Link from 'next/link'; // Import Link
 
 const ArrowRightIcon = () => (
   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -49,26 +50,30 @@ export default function Hero() {
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-5 mt-16">
-  {/* Tombol Utama (Primary) */}
-  <button 
-    className="flex items-center justify-center bg-gradient-to-r from-[#1C5C8C] via-[#216FA8] to-[#2A8BCB] text-white px-8 py-3 rounded-full font-semibold 
-               transition-all duration-300 shadow-lg hover:shadow-xl
-               transform hover:-translate-y-1 hover:scale-105"
-  >
-    Hubungi Tim Ekspor
-    <ArrowRightIcon />
-  </button>
-  
-  {/* Tombol Sekunder (Secondary) */}
-  <button 
-    className="flex items-center justify-center bg-white border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full font-semibold 
-               transition-all duration-300 shadow-md hover:shadow-lg 
-               transform hover:-translate-y-1 hover:scale-105 hover:border-[#216FA8] hover:text-[#216FA8]"
-  >
-    <BoxIcon />
-    Lihat Produk Kami
-  </button>
-</div>
+          {/* Tombol Utama (Primary) */}
+          <Link href="/contact">
+            <button 
+              className="flex items-center justify-center bg-gradient-to-r from-[#1C5C8C] via-[#216FA8] to-[#2A8BCB] text-white px-8 py-3 rounded-full font-semibold 
+                       transition-all duration-300 shadow-lg hover:shadow-xl
+                       transform hover:-translate-y-1 hover:scale-105"
+            >
+              Hubungi Tim Ekspor
+              <ArrowRightIcon />
+            </button>
+          </Link>
+          
+          {/* Tombol Sekunder (Secondary) */}
+          <Link href="/product">
+            <button 
+              className="flex items-center justify-center bg-white border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full font-semibold 
+                       transition-all duration-300 shadow-md hover:shadow-lg 
+                       transform hover:-translate-y-1 hover:scale-105 hover:border-[#216FA8] hover:text-[#216FA8]"
+            >
+              <BoxIcon />
+              Lihat Produk Kami
+            </button>
+          </Link>
+        </div>
         
       </div>
     </section>
