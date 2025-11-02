@@ -33,7 +33,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Header */}
-      <header className="bg-white sticky top-0 z-50 shadow-sm">
+      <header className="bg-white sticky top-0 z-50">
         <div className="container mx-auto flex justify-between items-center p-4">
           
           {/* Logo */}
