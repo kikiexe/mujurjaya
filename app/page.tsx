@@ -8,7 +8,6 @@ import Clients from '@/components/sections/home/Clients';
 export default function HomePage() {
   return (
     <main>
-      {/* 2. Susun komponen sesuai urutan di desain */}
       <Hero />
       <Features />
       <Products />
