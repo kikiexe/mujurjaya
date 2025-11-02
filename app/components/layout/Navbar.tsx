@@ -3,18 +3,22 @@
 import Link from 'next/link';
 import { Mail, Phone, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [activeLang, setActiveLang] = useState('EN');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  const isActive = (path: string) => pathname === path;
+
   return (
     <>
-      {/* Top Bar - Tetap ditampilkan di semua device */}
+      {/* Top Bar */}
       <div className="bg-[#293241] text-white text-xs sm:text-sm py-2 px-4">
         <div className="container mx-auto flex justify-start items-center gap-4 sm:gap-6">
           <a href="mailto:info@mujurjaya.com" className="flex items-center gap-2 hover:text-gray-300">
@@ -52,30 +56,57 @@ export default function Navbar() {
             <nav>
               <ul className="flex space-x-6 lg:space-x-8 text-base">
                 <li>
-                  <div className="inline-block">
-                    <Link href="/" className="font-bold text-[#216FA8]">
-                      Home
-                    </Link>
-                    <div className="h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></div>
-                  </div>
+                  <Link 
+                    href="/" 
+                    className={`relative group font-bold pb-1.5 ${isActive('/') ? 'text-[#216FA8]' : 'text-[#828484] hover:text-[#216FA8]'} transition-colors duration-300 ease-out`}
+                  >
+                    Home
+                    {isActive('/') ? (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></span>
+                    ) : (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                    )}
+                  </Link>
                 </li>
                 
                 <li>
-                  <Link href="./about" className="relative group font-bold pb-1.5 text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out">
+                  <Link 
+                    href="/about" 
+                    className={`relative group font-bold pb-1.5 ${isActive('/about') ? 'text-[#216FA8]' : 'text-[#828484] hover:text-[#216FA8]'} transition-colors duration-300 ease-out`}
+                  >
                     About
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                    {isActive('/about') ? (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></span>
+                    ) : (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                    )}
                   </Link>
                 </li>
+
                 <li>
-                  <Link href="./product" className="relative group font-bold pb-1.5 text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out">
+                  <Link 
+                    href="/product" 
+                    className={`relative group font-bold pb-1.5 ${isActive('/product') ? 'text-[#216FA8]' : 'text-[#828484] hover:text-[#216FA8]'} transition-colors duration-300 ease-out`}
+                  >
                     Product
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                    {isActive('/product') ? (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></span>
+                    ) : (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                    )}
                   </Link>
                 </li>
                 <li>
-                  <Link href="./contact" className="relative group font-bold pb-1.5 text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out">
+                  <Link 
+                    href="/contact" 
+                    className={`relative group font-bold pb-1.5 ${isActive('/contact') ? 'text-[#216FA8]' : 'text-[#828484] hover:text-[#216FA8]'} transition-colors duration-300 ease-out`}
+                  >
                     Contact
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                    {isActive('/contact') ? (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></span>
+                    ) : (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                    )}
                   </Link>
                 </li>
               </ul>
@@ -165,50 +196,66 @@ export default function Navbar() {
             mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <nav className="container mx-auto px-4 pb-4">
+          <nav className="container mx-auto pb-4">
             <ul className="flex flex-col space-y-1">
-              <li>
-                <div className="inline-block w-full">
+              {/* === PERBAIKAN DIMULAI DI SINI === */}
+              <li className="px-4">
                   <Link 
-                    href="/" 
-                    className="block py-2 px-4 font-bold text-[#216FA8]"
-                    onClick={() => setMobileMenuOpen(false)}
+                      href="/" 
+                      className={`relative group inline-block py-2 pb-[10px] font-bold ${isActive('/') ? 'text-[#216FA8]' : 'text-[#828484] hover:text-[#216FA8]'} transition-colors duration-300 ease-out`}
+                      onClick={() => setMobileMenuOpen(false)}
                   >
-                    Home
+                      Home
+                      {isActive('/') ? (
+                          <span className="absolute bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></span>
+                      ) : (
+                          <span className="absolute bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                      )}
                   </Link>
-                  <div className="h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></div>
-                </div>
               </li>
-              <li>
-                <a 
+              <li className="px-4">
+                <Link 
                   href="/about" 
-                  className="relative group inline-block w-full py-2 px-4 font-bold text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out"
+                  className={`relative group inline-block py-2 pb-[10px] font-bold ${isActive('/about') ? 'text-[#216FA8]' : 'text-[#828484] hover:text-[#216FA8]'} transition-colors duration-300 ease-out`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   About
-                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                </a>
+                  {isActive('/about') ? (
+                    <span className="absolute bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></span>
+                  ) : (
+                    <span className="absolute bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                  )}
+                </Link>
               </li>
-              <li>
-                <a 
+              <li className="px-4">
+                <Link 
                   href="/product" 
-                  className="relative group inline-block w-full py-2 px-4 font-bold text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out"
+                  className={`relative group inline-block py-2 pb-[10px] font-bold ${isActive('/product') ? 'text-[#216FA8]' : 'text-[#828484] hover:text-[#216FA8]'} transition-colors duration-300 ease-out`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Product
-                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                </a>
+                  {isActive('/product') ? (
+                    <span className="absolute bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></span>
+                  ) : (
+                    <span className="absolute bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                  )}
+                </Link>
               </li>
-              <li>
-                <a 
+              <li className="px-4">
+                <Link 
                   href="/contact" 
-                  className="relative group inline-block w-full py-2 px-4 font-bold text-[#828484] hover:text-[#216FA8] transition-colors duration-300 ease-out"
+                  className={`relative group inline-block py-2 pb-[10px] font-bold ${isActive('/contact') ? 'text-[#216FA8]' : 'text-[#828484] hover:text-[#216FA8]'} transition-colors duration-300 ease-out`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Contact
-                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
-                </a>
+                  {isActive('/contact') ? (
+                    <span className="absolute bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0"></span>
+                  ) : (
+                    <span className="absolute bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-[#216FA8] to-white/0 scale-x-0 origin-right transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                  )}
+                </Link>
               </li>
+              {/* === PERBAIKAN SELESAI DI SINI === */}
             </ul>
           </nav>
         </div>
