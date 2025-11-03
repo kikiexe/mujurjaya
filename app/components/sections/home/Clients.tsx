@@ -5,7 +5,7 @@ export default function Clients() {
   const clients = Array(4).fill(null);
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className="py-16 md:py-10 bg-white">
       <div className="container mx-auto px-4">
         
         {/* Section Header */}
