@@ -196,7 +196,7 @@ export default function Form() {
                 Adonan dibentuk menjadi mie sohun dan dikeringkan dengan suhu terkontrol untuk mempertahankan kualitas dan nutrisi.
               </p>
               <div className="flex items-center gap-3 text-gray-800">
-                <Phone size={18} className="text-[#216FA8] bg-[#A9DBFF]/30 rounded-b-sm" />
+                <Phone size={18} className="text-[#216FA8] bg-[#A9DBFF] rounded-b-sm" />
                 <span className="font-medium">+62 123-456-7890</span>
               </div>
             </div>
@@ -207,7 +207,7 @@ export default function Form() {
                 Adonan dibentuk menjadi mie sohun dan dikeringkan dengan suhu terkontrol untuk mempertahankan kualitas dan nutrisi.
               </p>
               <div className="flex items-start gap-3 text-gray-800">
-                <MapPin size={18} className="text-[#216FA8] bg-[#A9DBFF]/30 rounded-b-sm mt-1 flex-shrink-0" />
+                <MapPin size={18} className="text-[#216FA8] bg-[#A9DBFF] rounded-b-sm mt-1 flex-shrink-0" />
                 <span className="font-medium">
                   Jl. Selayar, Jawa Tengah, Indonesia
                 </span>
