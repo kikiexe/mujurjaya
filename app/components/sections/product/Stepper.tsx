@@ -62,37 +62,18 @@ export default function Stepper() {
   }, []);
 
   return (
-    <section className="bg-white py-16 md:py-24">
+    <section className="bg-white py-12 md:py-16 lg:py-24">
       <div className="container mx-auto px-4 max-w-5xl">
 
-        {/* PERUBAHAN 1: Wadah pt-10 dipisahkan dari wadah 'relative' */}
-        <div className="pt-10">
+        {/* Wadah dengan padding top */}
+        <div className="pt-6 md:pt-8 lg:pt-10">
           <div className="relative">
-            {/* PERUBAHAN 2: Garis sekarang menggunakan style inline untuk posisi dan tinggi yang presisi */}
-            <div
-              className="absolute left-1/2 w-1 bg-gray-200 -translate-x-1/2"
-              style={{
-                // Lingkaran adalah h-12 (3rem), jadi garis dimulai 1.5rem dari atas (tengah lingkaran pertama)
-                top: '13.1rem',
-                // Tingginya adalah 100% dikurangi 3rem (tinggi total satu lingkaran) agar berakhir di tengah lingkaran terakhir
-                height: 'calc(100% - 26.2rem)',
-              }}
-              aria-hidden="true"
-            ></div>
-
-            <div
-              className="absolute left-1/2 w-1 bg-[#216FA8] -translate-x-1/2 transition-all duration-700 ease-out"
-              style={{
-                top: '13.1rem',
-                height: activeStep === 0 ? '0%' : `calc((100% - 26.2rem) * ${activeStep / (steps.length - 1)})`,
-              }}
-              aria-hidden="true"
-            ></div>
-
-            <div className="space-y-20">
+            {/* Container untuk spacing yang benar */}
+            <div className="space-y-12 md:space-y-20">
               {steps.map((step, index) => {
                 const isActive = index <= activeStep;
                 const isEven = index % 2 === 0;
+                const isLast = index === steps.length - 1;
 
                 return (
                   <div
@@ -103,15 +84,89 @@ export default function Stepper() {
                     data-step-index={index}
                     className="relative"
                   >
-                    {/* Grid untuk layout gambar dan teks */}
-                    <div className="grid md:grid-cols-2 gap-16 md:gap-20 items-center">
+                    {/* Garis connecting ke step berikutnya */}
+                    {!isLast && (
+                      <>
+                        {/* Garis untuk mobile */}
+                        <div 
+                          className="md:hidden absolute left-5 top-10 w-0.5 bg-gray-200 z-0"
+                          style={{ height: 'calc(100% + 3rem)' }}
+                          aria-hidden="true"
+                        ></div>
+                        <div 
+                          className={`md:hidden absolute left-5 top-10 w-0.5 bg-[#216FA8] z-0 transition-all duration-700 ease-out ${
+                            isActive && index < activeStep ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          style={{ height: 'calc(100% + 3rem)' }}
+                          aria-hidden="true"
+                        ></div>
+                      </>
+                    )}
+                    {/* Layout untuk mobile: Garis di kiri dengan konten di kanan */}
+                    <div className="md:hidden flex gap-6">
+                      {/* Kolom kiri: Nomor dengan garis */}
+                      <div className="flex flex-col items-center flex-shrink-0 relative z-10">
+                        <div
+                          className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500
+                            ${isActive ? 'bg-[#216FA8] text-white scale-110 shadow-lg' : 'bg-gray-300 text-gray-500 scale-100'}`}
+                        >
+                          {index + 1}
+                        </div>
+                      </div>
+
+                      {/* Kolom kanan: Konten */}
+                      <div className={`flex-1 space-y-4 relative z-10 ${!isLast ? 'pb-12' : ''}`}>
+                        {/* Judul */}
+                        <h3 className="text-lg sm:text-xl font-bold text-gray-800 pt-1">
+                          {step.title}
+                        </h3>
+
+                        {/* Gambar */}
+                        <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+                          <div className="bg-white rounded-lg shadow-lg p-4 flex justify-center items-center aspect-square border border-gray-100">
+                            <Image
+                              src={step.imageUrl}
+                              alt={step.title}
+                              width={200}
+                              height={200}
+                              className="object-contain w-full h-full"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Deskripsi */}
+                        <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+                          <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Layout untuk tablet & desktop: Grid 2 kolom */}
+                    <div className="hidden md:grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
                       
-                      {/* Kolom Gambar dengan Efek Scroll */}
+                      {/* Garis untuk desktop - hanya jika bukan step terakhir */}
+                      {!isLast && (
+                        <>
+                          <div 
+                            className="absolute left-1/2 top-1/2 w-1 bg-gray-200 -translate-x-1/2 z-0"
+                            style={{ height: 'calc(100% + 5rem)' }}
+                            aria-hidden="true"
+                          ></div>
+                          <div 
+                            className={`absolute left-1/2 top-1/2 w-1 bg-[#216FA8] -translate-x-1/2 z-0 transition-all duration-700 ease-out ${
+                              isActive && index < activeStep ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            style={{ height: 'calc(100% + 5rem)' }}
+                            aria-hidden="true"
+                          ></div>
+                        </>
+                      )}
+                      
+                      {/* Kolom Gambar */}
                       <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} ${isEven ? 'md:order-1' : 'md:order-2'}`}>
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 flex justify-center items-center aspect-square">
-                          <div className="w-32 h-32 bg-gray-200 rounded-md flex items-center justify-center text-gray-400">
-                            Gambar
-                          </div>
                           <Image
                             src={step.imageUrl}
                             alt={step.title}
@@ -122,19 +177,23 @@ export default function Stepper() {
                         </div>
                       </div>
 
-                      {/* Kolom Teks dengan Efek Scroll */}
+                      {/* Kolom Teks */}
                       <div className={`relative ${isEven ? 'md:order-2' : 'md:order-1'}`}>
-                        <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 ' + (isEven ? 'translate-x-8' : '-translate-x-8')} ${isEven ? 'md:pl-16' : 'md:pr-16 md:text-right'}`}>
-                          <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">{step.title}</h3>
-                          <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                        <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 ' + (isEven ? 'translate-x-8' : '-translate-x-8')} ${isEven ? 'md:pl-8 lg:pl-16' : 'md:pr-8 lg:pr-16 md:text-right'}`}>
+                          <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-800 mb-3">
+                            {step.title}
+                          </h3>
+                          <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
+                            {step.description}
+                          </p>
                         </div>
                       </div>
 
                     </div>
                     
-                    {/* Bulatan Nomor (dipindahkan ke tengah) dengan Efek Scroll */}
+                    {/* Bulatan Nomor untuk tablet & desktop */}
                     <div
-                      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-xl transition-all duration-500 z-10
+                      className={`hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 rounded-full items-center justify-center font-bold text-lg lg:text-xl transition-all duration-500 z-10
                         ${isActive ? 'bg-[#216FA8] text-white scale-110 shadow-lg' : 'bg-gray-300 text-gray-500 scale-100'}`}
                     >
                       {index + 1}
