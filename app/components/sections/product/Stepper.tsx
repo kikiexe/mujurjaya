@@ -1,10 +1,9 @@
-// app/components/sections/product/Stepper.tsx
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-// Data untuk setiap langkah
+// Data langkah-langkah produksi
 const steps = [
   {
     title: 'Seleksi Bahan Baku',
@@ -32,6 +31,7 @@ export default function Stepper() {
   const [activeStep, setActiveStep] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Intersection Observer untuk animasi scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -64,11 +64,8 @@ export default function Stepper() {
   return (
     <section className="bg-white py-12 md:py-16 lg:py-24">
       <div className="container mx-auto px-4 max-w-5xl">
-
-        {/* Wadah dengan padding top */}
         <div className="pt-6 md:pt-8 lg:pt-10">
           <div className="relative">
-            {/* Container untuk spacing yang benar */}
             <div className="space-y-12 md:space-y-20">
               {steps.map((step, index) => {
                 const isActive = index <= activeStep;
@@ -84,7 +81,7 @@ export default function Stepper() {
                     data-step-index={index}
                     className="relative"
                   >
-                    {/* Garis connecting ke step berikutnya */}
+                    {/* Garis penghubung antar step */}
                     {!isLast && (
                       <>
                         {/* Garis untuk mobile */}
@@ -102,9 +99,10 @@ export default function Stepper() {
                         ></div>
                       </>
                     )}
-                    {/* Layout untuk mobile: Garis di kiri dengan konten di kanan */}
+
+                    {/* Layout mobile */}
                     <div className="md:hidden flex gap-6">
-                      {/* Kolom kiri: Nomor dengan garis */}
+                      {/* Nomor step */}
                       <div className="flex flex-col items-center flex-shrink-0 relative z-10">
                         <div
                           className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500
@@ -114,14 +112,13 @@ export default function Stepper() {
                         </div>
                       </div>
 
-                      {/* Kolom kanan: Konten */}
+                      {/* Konten step */}
                       <div className={`flex-1 space-y-4 relative z-10 ${!isLast ? 'pb-12' : ''}`}>
-                        {/* Judul */}
                         <h3 className="text-lg sm:text-xl font-bold text-gray-800 pt-1">
                           {step.title}
                         </h3>
 
-                        {/* Gambar */}
+                        {/* Gambar dengan animasi */}
                         <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
                           <div className="bg-white rounded-lg shadow-lg p-4 flex justify-center items-center aspect-square border border-gray-100">
                             <Image
@@ -134,7 +131,7 @@ export default function Stepper() {
                           </div>
                         </div>
 
-                        {/* Deskripsi */}
+                        {/* Deskripsi dengan animasi */}
                         <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
                           <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                             {step.description}
@@ -143,10 +140,10 @@ export default function Stepper() {
                       </div>
                     </div>
 
-                    {/* Layout untuk tablet & desktop: Grid 2 kolom */}
+                    {/* Layout desktop */}
                     <div className="hidden md:grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
                       
-                      {/* Garis untuk desktop - hanya jika bukan step terakhir */}
+                      {/* Garis untuk desktop */}
                       {!isLast && (
                         <>
                           <div 
@@ -164,7 +161,7 @@ export default function Stepper() {
                         </>
                       )}
                       
-                      {/* Kolom Gambar */}
+                      {/* Gambar step */}
                       <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} ${isEven ? 'md:order-1' : 'md:order-2'}`}>
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 flex justify-center items-center aspect-square">
                           <Image
@@ -177,7 +174,7 @@ export default function Stepper() {
                         </div>
                       </div>
 
-                      {/* Kolom Teks */}
+                      {/* Teks step */}
                       <div className={`relative ${isEven ? 'md:order-2' : 'md:order-1'}`}>
                         <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 ' + (isEven ? 'translate-x-8' : '-translate-x-8')} ${isEven ? 'md:pl-8 lg:pl-16' : 'md:pr-8 lg:pr-16 md:text-right'}`}>
                           <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-800 mb-3">
@@ -188,10 +185,9 @@ export default function Stepper() {
                           </p>
                         </div>
                       </div>
-
                     </div>
                     
-                    {/* Bulatan Nomor untuk tablet & desktop */}
+                    {/* Nomor step untuk desktop */}
                     <div
                       className={`hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 rounded-full items-center justify-center font-bold text-lg lg:text-xl transition-all duration-500 z-10
                         ${isActive ? 'bg-[#216FA8] text-white scale-110 shadow-lg' : 'bg-gray-300 text-gray-500 scale-100'}`}

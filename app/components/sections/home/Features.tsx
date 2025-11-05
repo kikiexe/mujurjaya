@@ -1,5 +1,3 @@
-// app/components/sections/home/Features.tsx
-
 export default function Features() {
   const features = [
     {
@@ -20,7 +18,7 @@ export default function Features() {
     <section className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4">
         
-        {/* Section Header */}
+        {/* Header section */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-xl font-regular text-[#216FA8] mb-4">
             Mengapa Harus Memilih Kami?
@@ -30,7 +28,7 @@ export default function Features() {
           </p>
         </div>
         
-        {/* Features Grid */}
+        {/* Grid fitur */}
         <div className="grid md:grid-cols-3 gap-8 text-center">
           {features.map((feature, index) => (
             <div 

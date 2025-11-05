@@ -1,6 +1,6 @@
-// app/components/sections/home/Products.tsx
 import Image from 'next/image';
 
+// Ikon checklist untuk fitur
 const CheckmarkIcon = () => (
   <svg 
     className="w-6 h-6 text-[#216FA8] mr-3 flex-shrink-0" 
@@ -21,17 +21,15 @@ export default function Products() {
   ];
 
   return (
-    // Mengubah background menjadi biru muda yang lebih solid sesuai gambar
     <section className="py-16 md:py-24 bg-[#EBF5FF]">
       <div className="container mx-auto px-4">
         
-        {/* Layout utama: grid 2 kolom di layar medium ke atas */}
+        {/* Layout dua kolom */}
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* Kolom Kiri: Gambar */}
-          <div className="w-full ">
+          {/* Gambar produk */}
+          <div className="w-full">
             <Image
-              // Ganti dengan path gambar pabrik Anda
               src="/images/factory-drying.jpg" 
               alt="Proses penjemuran mie sohun di pabrik"
               width={600}
@@ -40,7 +38,7 @@ export default function Products() {
             />
           </div>
 
-          {/* Kolom Kanan: Teks Deskripsi */}
+          {/* Deskripsi produk */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-[#216FA8] mb-4">
               Produk Unggulan Kami

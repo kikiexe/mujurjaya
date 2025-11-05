@@ -1,5 +1,3 @@
-// app/components/sections/product/Hero.tsx
-
 export default function Hero() {
   return (
     <section className="bg-gradient-to-b from-[#A9DBFF]/30 to-[#FFFFFF] pt-16 md:pt-24">
@@ -9,7 +7,7 @@ export default function Hero() {
             Kontak Kami
           </h1>
           <p className="text-lg text-black-500 max-w-3xl mx-auto">
-            Mengenal lebih dekat dedikasi kami dalam menghadirakn sohun kualitas terbaik dari Indonesia untuk Dunia
+            Mengenal lebih dekat dedikasi kami dalam menghadirkan sohun kualitas terbaik dari Indonesia untuk dunia.
           </p>
         </div>
       </div>

@@ -1,5 +1,3 @@
-// app/about/page.tsx
-
 import Hero from '@/components/sections/about/Hero';
 import Story from '@/components/sections/about/Story';
 import Stats from '@/components/sections/about/Stats';

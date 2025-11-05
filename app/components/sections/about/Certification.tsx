@@ -5,7 +5,7 @@ export default function Certification() {
     <section className="p-8 bg-blue-100">
       <div className="container mx-auto px-4">
         
-        {/* Section Header */}
+        {/* Header section */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-xl font-regular text-[#216FA8] mb-4">
             Jaminan Kualitas
@@ -15,14 +15,14 @@ export default function Certification() {
           </p>
         </div>
 
-        {/* Certification Grid */}
+        {/* Grid sertifikasi */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Certificate 1 */}
+          {/* Sertifikat ISO */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="w-full h-48 relative mb-4 rounded-lg overflow-hidden">
               <Image 
                 src="/images/cert1.jpg"
-                alt="Certification 1"
+                alt="Sertifikasi ISO"
                 fill
                 className="object-cover"
               />
@@ -30,12 +30,12 @@ export default function Certification() {
             <h3 className="text-lg font-semibold text-center">Sertifikasi ISO</h3>
           </div>
 
-          {/* Certificate 2 */}
+          {/* Sertifikat Halal */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="w-full h-48 relative mb-4 rounded-lg overflow-hidden">
               <Image 
                 src="/images/cert2.jpg"
-                alt="Certification 2"
+                alt="Sertifikasi Halal"
                 fill
                 className="object-cover"
               />
@@ -43,12 +43,12 @@ export default function Certification() {
             <h3 className="text-lg font-semibold text-center">Sertifikasi Halal</h3>
           </div>
 
-          {/* Certificate 3 */}
+          {/* Sertifikat HACCP */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="w-full h-48 relative mb-4 rounded-lg overflow-hidden">
               <Image 
                 src="/images/cert3.jpg"
-                alt="Certification 3"
+                alt="Sertifikasi HACCP"
                 fill
                 className="object-cover"
               />

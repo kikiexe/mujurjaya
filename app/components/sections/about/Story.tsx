@@ -6,13 +6,12 @@ export default function Story() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           
-          {/* Konten Kiri */}
+          {/* Konten cerita perusahaan */}
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
               <span className="text-gray-900 bg-clip-text">
                 Cerita Kami: Dari Ladang ke Meja Anda
               </span>
-              <br />
             </h1>
             
             <p className="text-gray-600 text-lg max-w-lg">
@@ -26,12 +25,11 @@ export default function Story() {
             </p>
           </div>
           
-          {/* Gambar Kanan */}
+          {/* Gambar ilustrasi */}
           <div className="relative">
              <Image
-              // Ganti dengan path gambar Anda yang sebenarnya
               src="/images/hero-factory.jpg" 
-              alt="Foto Memek"
+              alt="Proses produksi Mujur Jaya"
               width={550}
               height={400}
               className="rounded-xl bg-[#d9d9d9] shadow-2xl w-full h-auto object-cover"

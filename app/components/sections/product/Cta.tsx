@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 export default function Cta() {
   return (
     <section className="py-20 md:py-28 bg-gradient-to-r from-[#1C5C8C] via-[#216FA8] to-[#2A8BCB] relative overflow-hidden">
-      {/* Elemen dekoratif bokeh */}
+      {/* Background efek dekoratif */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-24 h-24 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-16 right-20 w-40 h-40 bg-blue-300/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
@@ -13,7 +13,7 @@ export default function Cta() {
       <div className="relative container mx-auto px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           
-          {/* Kolom Kiri */}
+          {/* Konten teks */}
           <div className="text-white space-y-5 animate-fadeIn">
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
               Siap Memulai Kemitraan?
@@ -24,7 +24,7 @@ export default function Cta() {
             </p>
           </div>
 
-          {/* Kolom Kanan */}
+          {/* Tombol CTA */}
           <div className="flex items-center justify-center md:justify-end">
             <Link
               href="/contact"

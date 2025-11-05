@@ -1,14 +1,14 @@
-// app/components/sections/home/Hero.tsx
 import Image from 'next/image';
-import Link from 'next/link'; // Import Link
+import Link from 'next/link';
 
+// Ikon panah untuk tombol utama
 const ArrowRightIcon = () => (
   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
   </svg>
 );
 
-// Ikon untuk "Lihat Produk Kami" (kotak/paket)
+// Ikon kotak untuk tombol produk
 const BoxIcon = () => (
   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4-8-4m16 0v10l-8 4-8-4V7m8 4v10" />
@@ -21,7 +21,7 @@ export default function Hero() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           
-          {/* Konten Kiri */}
+          {/* Konten teks */}
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
               <span className="bg-gradient-to-r from-[#4971D5] to-[#37D2FA] bg-clip-text text-transparent">
@@ -36,10 +36,9 @@ export default function Hero() {
             </p>
           </div>
           
-          {/* Gambar Kanan */}
+          {/* Gambar hero */}
           <div className="relative">
              <Image
-              // Ganti dengan path gambar Anda yang sebenarnya
               src="/images/hero-factory.jpg" 
               alt="Area penjemuran mie sohun di pabrik"
               width={550}
@@ -49,8 +48,9 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* Tombol aksi */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-5 mt-16">
-          {/* Tombol Utama (Primary) */}
+          {/* Tombol utama */}
           <Link href="/contact">
             <button 
               className="flex items-center justify-center bg-gradient-to-r from-[#1C5C8C] via-[#216FA8] to-[#2A8BCB] text-white px-8 py-3 rounded-full font-semibold 
@@ -62,7 +62,7 @@ export default function Hero() {
             </button>
           </Link>
           
-          {/* Tombol Sekunder (Secondary) */}
+          {/* Tombol sekunder */}
           <Link href="/product">
             <button 
               className="flex items-center justify-center bg-white border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full font-semibold 
