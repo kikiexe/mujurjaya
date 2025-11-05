@@ -17,12 +17,6 @@ export default function Story() {
             <p className="text-gray-600 text-lg max-w-lg">
               Mujur Jaya bermula dari visi sederhana: menghadirkan mie sohun berkualitas tinggi yang menghubungkan tradisi kuliner Indonesia dengan pasar global. Dengan dedikasi terhadap kualitas dan inovasi, kami telah tumbuh menjadi produsen terkemuka yang dipercaya oleh mitra ekspor di seluruh dunia.
             </p>
-            <p className="text-gray-600 text-lg max-w-lg">
-              Mujur Jaya bermula dari visi sederhana: menghadirkan mie sohun berkualitas tinggi yang menghubungkan tradisi kuliner Indonesia dengan pasar global. Dengan dedikasi terhadap kualitas dan inovasi, kami telah tumbuh menjadi produsen terkemuka yang dipercaya oleh mitra ekspor di seluruh dunia.
-            </p>
-            <p className="text-gray-600 text-lg max-w-lg">
-              Mujur Jaya bermula dari visi sederhana: menghadirkan mie sohun berkualitas tinggi yang menghubungkan tradisi kuliner Indonesia dengan pasar global. Dengan dedikasi terhadap kualitas dan inovasi, kami telah tumbuh menjadi produsen terkemuka yang dipercaya oleh mitra ekspor di seluruh dunia.
-            </p>
           </div>
           
           {/* Gambar ilustrasi */}
