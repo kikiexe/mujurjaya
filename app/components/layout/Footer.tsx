@@ -76,7 +76,7 @@ export default function Footer() {
           <div className="border-t border-gray-700 pt-3 w-full max-w-md mx-auto">
             <p>
               <span className={`${ptSerif.className} font-bold block`}>
-                © 2025 PT Mujur Jaya
+                © 2025 PD. Mujur Jaya Gelang Indah
               </span>
               <span className="block mt-1">
                 Premium Glass Noodle Manufacturer & Exporter. All Rights Reserved
