@@ -2,8 +2,11 @@
 
 import { Phone, MapPin } from 'lucide-react';
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Form() {
+  const { t } = useLanguage();
+  
   // State untuk form
   const [nama, setNama] = useState('');
   const [email, setEmail] = useState('');
@@ -28,7 +31,7 @@ export default function Form() {
 
       if (response.ok) {
         setStatus('success');
-        setStatusMessage('Pesan berhasil terkirim! Terima kasih.');
+        setStatusMessage(t('contact.form.success'));
         // Reset form
         setNama('');
         setEmail('');
@@ -36,12 +39,12 @@ export default function Form() {
       } else {
         const data = await response.json();
         setStatus('error');
-        setStatusMessage(data.error || 'Gagal mengirim pesan.');
+        setStatusMessage(data.error || t('contact.form.error'));
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setStatus('error');
-      setStatusMessage('Terjadi kesalahan. Coba lagi nanti.');
+      setStatusMessage(t('contact.form.error'));
     }
   };
 
@@ -54,10 +57,10 @@ export default function Form() {
           {/* Form kontak */}
           <div className="md:col-span-3">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4971D5] to-[#37D2FA] bg-clip-text text-transparent mb-2">
-              Kirim Pesan
+              {t('contact.form.title')}
             </h2>
             <p className="text-gray-600 mb-8">
-              Hubungi kami untuk informasi lebih lanjut tentang produk dan kemitraan.
+              {t('contact.form.subtitle')}
             </p>
             
             <form className="space-y-12" onSubmit={handleSubmit}>
@@ -83,7 +86,7 @@ export default function Form() {
                              peer-focus:scale-75 peer-focus:-translate-y-6
                              peer-focus:text-[#216FA8]"
                 >
-                  Nama
+                  {t('contact.form.name')}
                 </label>
                 <span className="absolute bottom-0 left-0 block w-full h-0.5 bg-gray-300 z-0"></span>
                 <span 
@@ -114,7 +117,7 @@ export default function Form() {
                              peer-focus:scale-75 peer-focus:-translate-y-6
                              peer-focus:text-[#216FA8]"
                 >
-                  Email
+                  {t('contact.form.email')}
                 </label>
                 <span className="absolute bottom-0 left-0 block w-full h-0.5 bg-gray-300 z-0"></span>
                 <span 
@@ -145,7 +148,7 @@ export default function Form() {
                              peer-focus:scale-75 peer-focus:-translate-y-6
                              peer-focus:text-[#216FA8]"
                 >
-                  Message
+                  {t('contact.form.message')}
                 </label>
                 <span className="absolute bottom-0 left-0 block w-full h-0.5 bg-gray-300 z-0"></span>
                 <span 
@@ -177,7 +180,7 @@ export default function Form() {
                                shadow-lg hover:shadow-xl transform hover:-translate-y-0.5
                                disabled:bg-gray-400 disabled:cursor-not-allowed"
                   >
-                    {status === 'loading' ? 'Mengirim...' : 'Submit'}
+                    {status === 'loading' ? t('contact.form.sending') : t('contact.form.submit')}
                   </button>
                 </div>
               </div>
@@ -188,9 +191,11 @@ export default function Form() {
           {/* Informasi kontak */}
           <div className="md:col-span-2 md:pl-12 md:border-l border-gray-200">
             <div className="mb-12">
-              <h3 className="text-2xl font-bold text-[#216FA8] mb-4">Call Us</h3>
+              <h3 className="text-2xl font-bold text-[#216FA8] mb-4">
+                {t('contact.call.title')}
+              </h3>
               <p className="text-gray-600 mb-4">
-                Hubungi kami untuk konsultasi produk dan informasi kemitraan.
+                {t('contact.call.desc')}
               </p>
               <div className="flex items-center gap-3 text-gray-800">
                 <Phone size={30} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-2 flex-shrink-0" />
@@ -199,9 +204,11 @@ export default function Form() {
             </div>
             
             <div>
-              <h3 className="text-2xl font-bold text-[#216FA8] mb-4">Visit Us</h3>
+              <h3 className="text-2xl font-bold text-[#216FA8] mb-4">
+                {t('contact.visit.title')}
+              </h3>
               <p className="text-gray-600 mb-4">
-                Kunjungi kantor dan pabrik kami untuk melihat proses produksi langsung.
+                {t('contact.visit.desc')}
               </p>
               <div className="flex items-center gap-3 text-gray-800">
                 <MapPin size={30} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-2 flex-shrink-0" />

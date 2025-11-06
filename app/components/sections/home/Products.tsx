@@ -1,4 +1,6 @@
+"use client";
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Ikon checklist untuk fitur
 const CheckmarkIcon = () => (
@@ -14,10 +16,12 @@ const CheckmarkIcon = () => (
 );
 
 export default function Products() {
+  const { t } = useLanguage();
+
   const features = [
-    'Kontrol kualitas yang ketat di setiap tahap produksi',
-    'Kapasitas produksi besar untuk memenuhi permintaan ekspor',
-    'Sertifikasi internasional (Halal, ISO, HACCP)'
+    t('home.products.feature1'),
+    t('home.products.feature2'),
+    t('home.products.feature3')
   ];
 
   return (
@@ -41,10 +45,10 @@ export default function Products() {
           {/* Deskripsi produk */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-[#216FA8] mb-4">
-              Produk Unggulan Kami
+              {t('home.products.title')}
             </h2>
             <p className="text-gray-700 text-lg mb-6">
-              Kami menawarkan berbagai varian mie sohun untuk memenuhi kebutuhan spesifik pasar Anda, termasuk kustomisasi ukuran dan kemasan
+              {t('home.products.description')}
             </p>
             <ul className="space-y-3">
               {features.map((feature, index) => (

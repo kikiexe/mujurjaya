@@ -1,6 +1,11 @@
+"use client";
+
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Story() {
+  const { t } = useLanguage();
+
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -10,12 +15,12 @@ export default function Story() {
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
               <span className="text-gray-900 bg-clip-text">
-                Cerita Kami: Dari Ladang ke Meja Anda
+                {t('about.story.title')}
               </span>
             </h1>
             
             <p className="text-gray-600 text-lg max-w-lg">
-              Mujur Jaya bermula dari visi sederhana: menghadirkan mie sohun berkualitas tinggi yang menghubungkan tradisi kuliner Indonesia dengan pasar global. Dengan dedikasi terhadap kualitas dan inovasi, kami telah tumbuh menjadi produsen terkemuka yang dipercaya oleh mitra ekspor di seluruh dunia.
+              {t('about.story.description')}
             </p>
           </div>
           

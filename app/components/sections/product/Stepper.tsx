@@ -2,34 +2,38 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-
-// Data langkah-langkah produksi
-const steps = [
-  {
-    title: 'Seleksi Bahan Baku',
-    description: 'Pemilihan bahan baku berkualitas tinggi adalah pondasi kami. Kami hanya menggunakan pati dari sumber terpercaya yang melewati quality control ketat.',
-    imageUrl: '/images/step-1-bahan-baku.png',
-  },
-  {
-    title: 'Pencampuran & Pengolahan',
-    description: 'Proses pencampuran sohun dengan teknologi modern dan formula rahasia kami untuk menghasilkan adonan dengan tekstur sempurna.',
-    imageUrl: '/images/step-2-pengolahan.png',
-  },
-  {
-    title: 'Pembentukan & Pengeringan',
-    description: 'Adonan dibentuk menjadi mie sohun dan dikeringkan dengan suhu yang terkontrol, mempertahankan kualitas dan nutrisi.',
-    imageUrl: '/images/step-3-pembentukan.png',
-  },
-  {
-    title: 'Pengemasan & Quality Control',
-    description: 'Produk dikemas dengan higienis dan melewati quality control akhir sebelum siap diekspor ke seluruh dunia.',
-    imageUrl: '/images/step-4-pengemasan.png',
-  },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Stepper() {
+  const { t } = useLanguage();
   const [activeStep, setActiveStep] = useState(0);
+  const [lineProgress, setLineProgress] = useState(0);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Data langkah-langkah produksi dengan translation keys
+  const steps = [
+    {
+      titleKey: 'product.step1.title',
+      descriptionKey: 'product.step1.desc',
+      imageUrl: '/images/step-1-bahan-baku.png',
+    },
+    {
+      titleKey: 'product.step2.title',
+      descriptionKey: 'product.step2.desc',
+      imageUrl: '/images/step-2-pengolahan.png',
+    },
+    {
+      titleKey: 'product.step3.title',
+      descriptionKey: 'product.step3.desc',
+      imageUrl: '/images/step-3-pembentukan.png',
+    },
+    {
+      titleKey: 'product.step4.title',
+      descriptionKey: 'product.step4.desc',
+      imageUrl: '/images/step-4-pengemasan.png',
+    },
+  ];
 
   // Intersection Observer untuk animasi scroll
   useEffect(() => {
@@ -39,17 +43,25 @@ export default function Stepper() {
           if (entry.isIntersecting) {
             const index = parseInt(entry.target.getAttribute('data-step-index') || '0', 10);
             setActiveStep((prev) => Math.max(prev, index));
+            
+            // Hitung progress berdasarkan visibility
+            if (index === activeStep) {
+              const rect = entry.boundingClientRect;
+              const windowHeight = window.innerHeight;
+              const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+              const progress = Math.max(0, Math.min(100, (visibleHeight / rect.height) * 100));
+              setLineProgress(progress);
+            }
           }
         });
       },
       {
-        rootMargin: '-20% 0px -30% 0px',
-        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: '-10% 0px -15% 0px',
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
       }
     );
 
     const currentRefs = stepRefs.current;
-
     currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
@@ -59,10 +71,44 @@ export default function Stepper() {
         if (ref) observer.unobserve(ref);
       });
     };
-  }, []);
+  }, [activeStep]);
+
+  // Scroll listener untuk smooth line progress
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentStepRef = stepRefs.current[activeStep];
+      if (!currentStepRef) return;
+
+      const rect = currentStepRef.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Hitung progress berdasarkan posisi scroll
+      let progress = 0;
+      if (rect.top < windowHeight && rect.bottom > 0) {
+        const startTrigger = windowHeight * 0.3; // Mulai animasi ketika 30% dari atas
+        const endTrigger = windowHeight * 0.7;   // Selesai ketika 70% dari atas
+        
+        if (rect.top <= startTrigger) {
+          progress = 100;
+        } else if (rect.top <= endTrigger) {
+          // Linear progress dari 0-100%
+          const progressRange = endTrigger - startTrigger;
+          const currentProgress = endTrigger - rect.top;
+          progress = Math.max(0, Math.min(100, (currentProgress / progressRange) * 100));
+        }
+      }
+      
+      setLineProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial calculation
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeStep]);
 
   return (
-    <section className="bg-white py-12 md:py-16 lg:py-24">
+    <section className="bg-white py-12 md:py-16 lg:py-24" ref={containerRef}>
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="pt-6 md:pt-8 lg:pt-10">
           <div className="relative">
@@ -71,6 +117,8 @@ export default function Stepper() {
                 const isActive = index <= activeStep;
                 const isEven = index % 2 === 0;
                 const isLast = index === steps.length - 1;
+                const isLineCompleted = index < activeStep;
+                const isCurrentLine = index === activeStep;
 
                 return (
                   <div
@@ -81,20 +129,26 @@ export default function Stepper() {
                     data-step-index={index}
                     className="relative"
                   >
-                    {/* Garis penghubung antar step */}
+                    {/* Garis penghubung antar step - MOBILE */}
                     {!isLast && (
                       <>
-                        {/* Garis untuk mobile */}
+                        {/* Garis background abu-abu */}
                         <div 
-                          className="md:hidden absolute left-5 top-10 w-0.5 bg-gray-200 z-0"
+                          className="md:hidden absolute left-5 top-10 w-1 bg-gray-200 z-0"
                           style={{ height: 'calc(100% + 3rem)' }}
                           aria-hidden="true"
                         ></div>
+                        
+                        {/* Garis biru dengan animasi progress */}
                         <div 
-                          className={`md:hidden absolute left-5 top-10 w-0.5 bg-[#216FA8] z-0 transition-all duration-700 ease-out ${
-                            isActive && index < activeStep ? 'opacity-100' : 'opacity-0'
+                          className={`md:hidden absolute left-5 top-10 w-1 bg-[#216FA8] z-0 transition-all duration-300 ${
+                            isLineCompleted ? 'opacity-100' : 'opacity-0'
                           }`}
-                          style={{ height: 'calc(100% + 3rem)' }}
+                          style={{ 
+                            height: isLineCompleted 
+                              ? 'calc(100% + 3rem)' 
+                              : (isCurrentLine ? `calc(${lineProgress}% + 3rem)` : '0%')
+                          }}
                           aria-hidden="true"
                         ></div>
                       </>
@@ -115,15 +169,22 @@ export default function Stepper() {
                       {/* Konten step */}
                       <div className={`flex-1 space-y-4 relative z-10 ${!isLast ? 'pb-12' : ''}`}>
                         <h3 className="text-lg sm:text-xl font-bold text-gray-800 pt-1">
-                          {step.title}
+                          {t(step.titleKey)}
                         </h3>
 
                         {/* Gambar dengan animasi */}
-                        <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+                        <div 
+                          className={`transition-all duration-700 ease-out ${
+                            isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                          }`}
+                          style={{
+                            transitionDelay: isActive ? `${index * 150}ms` : '0ms'
+                          }}
+                        >
                           <div className="bg-white rounded-lg shadow-lg p-4 flex justify-center items-center aspect-square border border-gray-100">
                             <Image
                               src={step.imageUrl}
-                              alt={step.title}
+                              alt={t(step.titleKey)}
                               width={200}
                               height={200}
                               className="object-contain w-full h-full"
@@ -132,9 +193,16 @@ export default function Stepper() {
                         </div>
 
                         {/* Deskripsi dengan animasi */}
-                        <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+                        <div 
+                          className={`transition-all duration-700 ease-out ${
+                            isActive ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+                          }`}
+                          style={{
+                            transitionDelay: isActive ? `${index * 150 + 300}ms` : '0ms'
+                          }}
+                        >
                           <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                            {step.description}
+                            {t(step.descriptionKey)}
                           </p>
                         </div>
                       </div>
@@ -153,9 +221,13 @@ export default function Stepper() {
                           ></div>
                           <div 
                             className={`absolute left-1/2 top-1/2 w-1 bg-[#216FA8] -translate-x-1/2 z-0 transition-all duration-700 ease-out ${
-                              isActive && index < activeStep ? 'opacity-100' : 'opacity-0'
+                              isLineCompleted ? 'opacity-100' : 'opacity-0'
                             }`}
-                            style={{ height: 'calc(100% + 5rem)' }}
+                            style={{ 
+                              height: isLineCompleted 
+                                ? 'calc(100% + 5rem)' 
+                                : (isCurrentLine ? `calc(${lineProgress}% + 5rem)` : '0%')
+                            }}
                             aria-hidden="true"
                           ></div>
                         </>
@@ -166,7 +238,7 @@ export default function Stepper() {
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 flex justify-center items-center aspect-square">
                           <Image
                             src={step.imageUrl}
-                            alt={step.title}
+                            alt={t(step.titleKey)}
                             width={200}
                             height={200}
                             className="object-contain"
@@ -176,12 +248,19 @@ export default function Stepper() {
 
                       {/* Teks step */}
                       <div className={`relative ${isEven ? 'md:order-2' : 'md:order-1'}`}>
-                        <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 ' + (isEven ? 'translate-x-8' : '-translate-x-8')} ${isEven ? 'md:pl-8 lg:pl-16' : 'md:pr-8 lg:pr-16 md:text-right'}`}>
+                        <div 
+                          className={`transition-all duration-700 ease-out ${
+                            isActive ? 'opacity-100 translate-x-0' : 'opacity-0 ' + (isEven ? 'translate-x-8' : '-translate-x-8')
+                          } ${isEven ? 'md:pl-8 lg:pl-16' : 'md:pr-8 lg:pr-16 md:text-right'}`}
+                          style={{
+                            transitionDelay: isActive ? `${index * 200}ms` : '0ms'
+                          }}
+                        >
                           <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-800 mb-3">
-                            {step.title}
+                            {t(step.titleKey)}
                           </h3>
                           <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
-                            {step.description}
+                            {t(step.descriptionKey)}
                           </p>
                         </div>
                       </div>

@@ -1,5 +1,9 @@
+"use client";
+
+import { useLanguage } from '@/contexts/LanguageContext';
+
 export default function Clients() {
-  // Data placeholder untuk logo klien
+  const { t } = useLanguage();
   const clients = Array(4).fill(null);
 
   return (
@@ -9,7 +13,7 @@ export default function Clients() {
         {/* Header section */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Client Kami
+            {t('home.clients.title')}
           </h2>
         </div>
         

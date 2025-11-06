@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Cta() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-20 md:py-28 bg-gradient-to-r from-[#1C5C8C] via-[#216FA8] to-[#2A8BCB] relative overflow-hidden">
       {/* Background efek dekoratif */}
@@ -16,11 +21,10 @@ export default function Cta() {
           {/* Konten teks */}
           <div className="text-white space-y-5 animate-fadeIn">
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
-              Siap Memulai Kemitraan?
+              {t('home.cta.title')}
             </h2>
             <p className="text-lg md:text-xl text-blue-100 leading-relaxed">
-              Tim kami siap membantu Anda dengan informasi produk, 
-              sampel, dan penawaran harga terbaik untuk kebutuhan ekspor Anda.
+              {t('home.cta.description')}
             </p>
           </div>
 
@@ -32,7 +36,7 @@ export default function Cta() {
                         shadow-lg hover:shadow-2xl transition-all duration-300 
                         flex items-center gap-2 hover:scale-105"
             >
-              Hubungi Kami
+              {t('home.cta.button')}
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>

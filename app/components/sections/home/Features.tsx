@@ -1,16 +1,22 @@
+"use client";
+
+import { useLanguage } from '@/contexts/LanguageContext';
+
 export default function Features() {
+  const { t } = useLanguage();
+
   const features = [
     {
-      title: 'Standar Kualitas Internasional',
-      description: 'Produk kami diproses menggunakan teknologi modern yang memenuhi standar internasional, menjaga kualitas dan kesegaran.'
+      title: t('home.features.quality.title'),
+      description: t('home.features.quality.desc')
     },
     {
-      title: 'Bahan Baku Premium',
-      description: 'Kami hanya menggunakan bahan baku pilihan terbaik yang dipilih secara teliti untuk menghasilkan produk berkualitas tinggi.'
+      title: t('home.features.ingredients.title'),
+      description: t('home.features.ingredients.desc')
     },
     {
-      title: 'Jaminan Ekspor Luas',
-      description: 'Berpengalaman dalam mengirimkan produk ke berbagai negara dengan sistem logistik yang efisien dan terpercaya.'
+      title: t('home.features.export.title'),
+      description: t('home.features.export.desc')
     }
   ];
 
@@ -21,10 +27,10 @@ export default function Features() {
         {/* Header section */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-xl font-regular text-[#216FA8] mb-4">
-            Mengapa Harus Memilih Kami?
+            {t('home.features.subtitle')}
           </h2>
           <p className="text-[#000000] text-2xl font-bold max-w-2xl mx-auto">
-            MITRA TERPERCAYA UNTUK KEBUTUHAN SOHUN ANDA
+            {t('home.features.title')}
           </p>
         </div>
         

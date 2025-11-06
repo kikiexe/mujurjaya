@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { Mail, Phone, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Navbar() {
-  const [activeLang, setActiveLang] = useState('ID');
+  const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -87,7 +88,12 @@ export default function Navbar() {
             <div className="hidden md:flex items-center gap-8 lg:gap-16">
               <nav>
                 <ul className="flex space-x-6 lg:space-x-8 text-base">
-                  {['/', '/about', '/product', '/contact'].map((path) => (
+                  {[
+                    { path: '/', key: 'nav.home' },
+                    { path: '/about', key: 'nav.about' },
+                    { path: '/product', key: 'nav.product' },
+                    { path: '/contact', key: 'nav.contact' }
+                  ].map(({ path, key }) => (
                     <li key={path}>
                       <Link 
                         href={path} 
@@ -97,9 +103,7 @@ export default function Navbar() {
                             : (scrolled ? 'text-white/80 hover:text-white' : 'text-[#828484] hover:text-[#216FA8]')
                         } transition-colors duration-300 ease-out`}
                       >
-                        {path === '/' ? 'Home' : 
-                         path === '/about' ? 'About' :
-                         path === '/product' ? 'Product' : 'Contact'}
+                        {t(key)}
                         <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r ${
                           scrolled ? 'from-white to-white/0' : 'from-[#216FA8] to-white/0'
                         } ${
@@ -115,14 +119,14 @@ export default function Navbar() {
               <div className="relative flex items-center gap-2 text-sm font-medium">
                 <span
                   className={`absolute top-0 h-full w-12 rounded-md transition-transform duration-300 ease-in-out ${
-                    activeLang === 'EN' ? 'translate-x-[calc(100%+0.5rem)]' : 'translate-x-0'
+                    language === 'EN' ? 'translate-x-[calc(100%+0.5rem)]' : 'translate-x-0'
                   } ${scrolled ? 'bg-white/30' : 'bg-[#216FA8]/30'}`}
                   aria-hidden="true"
                 />
                 <button 
-                  onClick={() => setActiveLang('ID')}
+                  onClick={() => setLanguage('ID')}
                   className={`relative z-10 w-12 px-3 py-1.5 rounded-md transition-colors duration-300 ${
-                    activeLang === 'ID' 
+                    language === 'ID' 
                     ? (scrolled ? 'text-white font-bold' : 'text-[#216FA8] font-bold')
                     : (scrolled ? 'text-white/80 hover:bg-white/20' : 'text-[#828484] hover:bg-gray-200/50')
                   }`}
@@ -130,9 +134,9 @@ export default function Navbar() {
                   ID
                 </button>
                 <button 
-                  onClick={() => setActiveLang('EN')}
+                  onClick={() => setLanguage('EN')}
                   className={`relative z-10 w-12 px-3 py-1.5 rounded-md transition-colors duration-300 ${
-                    activeLang === 'EN' 
+                    language === 'EN' 
                     ? (scrolled ? 'text-white font-bold' : 'text-[#216FA8] font-bold')
                     : (scrolled ? 'text-white/80 hover:bg-white/20' : 'text-[#828484] hover:bg-gray-200/50')
                   }`}
@@ -181,7 +185,12 @@ export default function Navbar() {
           >
             <nav className="container mx-auto pb-4">
               <ul className="flex flex-col space-y-1">
-                {['/', '/about', '/product', '/contact'].map((path) => (
+                {[
+                  { path: '/', key: 'nav.home' },
+                  { path: '/about', key: 'nav.about' },
+                  { path: '/product', key: 'nav.product' },
+                  { path: '/contact', key: 'nav.contact' }
+                ].map(({ path, key }) => (
                   <li key={path} className="px-4">
                     <Link 
                       href={path} 
@@ -192,9 +201,7 @@ export default function Navbar() {
                       } transition-colors duration-300 ease-out`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      {path === '/' ? 'Home' : 
-                       path === '/about' ? 'About' :
-                       path === '/product' ? 'Product' : 'Contact'}
+                      {t(key)}
                       <span className={`absolute bottom-2 left-0 w-full h-0.5 bg-gradient-to-r ${
                         scrolled ? 'from-white to-white/0' : 'from-[#216FA8] to-white/0'
                       } ${
@@ -209,14 +216,14 @@ export default function Navbar() {
                   <div className="relative flex items-center gap-1 text-xs font-medium">
                     <span
                       className={`absolute top-0 h-full w-10 rounded-md transition-transform duration-300 ease-in-out ${
-                        activeLang === 'EN' ? 'translate-x-[calc(100%+0.25rem)]' : 'translate-x-0'
+                        language === 'EN' ? 'translate-x-[calc(100%+0.25rem)]' : 'translate-x-0'
                       } ${scrolled ? 'bg-white/30' : 'bg-[#216FA8]/30'}`}
                       aria-hidden="true"
                     />
                     <button 
-                      onClick={() => setActiveLang('ID')}
+                      onClick={() => setLanguage('ID')}
                       className={`relative z-10 w-10 px-2 py-1 rounded-md transition-colors duration-300 ${
-                        activeLang === 'ID' 
+                        language === 'ID' 
                         ? (scrolled ? 'text-white font-bold' : 'text-[#216FA8] font-bold')
                         : (scrolled ? 'text-white/80' : 'text-[#828484]')
                       }`}
@@ -224,9 +231,9 @@ export default function Navbar() {
                       ID
                     </button>
                     <button 
-                      onClick={() => setActiveLang('EN')}
+                      onClick={() => setLanguage('EN')}
                       className={`relative z-10 w-10 px-2 py-1 rounded-md transition-colors duration-300 ${
-                        activeLang === 'EN' 
+                        language === 'EN' 
                         ? (scrolled ? 'text-white font-bold' : 'text-[#216FA8] font-bold')
                         : (scrolled ? 'text-white/80' : 'text-[#828484]')
                       }`}

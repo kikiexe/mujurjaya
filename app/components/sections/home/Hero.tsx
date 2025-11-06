@@ -1,5 +1,8 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Ikon panah untuk tombol utama
 const ArrowRightIcon = () => (
@@ -16,6 +19,8 @@ const BoxIcon = () => (
 );
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="bg-gradient-to-b from-[#A9DBFF]/30 to-[#FFFFFF] py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -25,14 +30,14 @@ export default function Hero() {
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
               <span className="bg-gradient-to-r from-[#4971D5] to-[#37D2FA] bg-clip-text text-transparent">
-                Kualitas Sohun Terbaik
+                {t('home.hero.title1')}
               </span>
               <br />
-              <span className="text-gray-900">Untuk Pasar Global</span>
+              <span className="text-gray-900">{t('home.hero.title2')}</span>
             </h1>
             
             <p className="text-gray-600 text-lg max-w-lg">
-              Produsen mie sohun premium dari Indonesia. Kami berdedikasi menyediakan produk berkualitas tinggi dengan standar internasional untuk mitra ekspor di seluruh dunia
+              {t('home.hero.description')}
             </p>
           </div>
           
@@ -57,7 +62,7 @@ export default function Hero() {
                        transition-all duration-300 shadow-lg hover:shadow-xl
                        transform hover:-translate-y-1 hover:scale-105"
             >
-              Hubungi Tim Ekspor
+              {t('home.hero.btn.contact')}
               <ArrowRightIcon />
             </button>
           </Link>
@@ -70,7 +75,7 @@ export default function Hero() {
                        transform hover:-translate-y-1 hover:scale-105 hover:border-[#216FA8] hover:text-[#216FA8]"
             >
               <BoxIcon />
-              Lihat Produk Kami
+              {t('home.hero.btn.products')}
             </button>
           </Link>
         </div>

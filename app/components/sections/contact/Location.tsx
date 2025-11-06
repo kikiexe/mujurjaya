@@ -1,11 +1,17 @@
+"use client";
+
+import { useLanguage } from '@/contexts/LanguageContext';
+
 export default function Location() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 text-center">
         
         <h2 className="text-4xl font-extrabold mb-12">
           <span className="bg-gradient-to-r from-[#4971D5] to-[#37D2FA] bg-clip-text text-transparent">
-            Lokasi Kami
+            {t('contact.location.title')}
           </span>
         </h2>
         
@@ -19,7 +25,7 @@ export default function Location() {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Lokasi Pabrik Sohun Gelang Indah"
+            title={t('contact.location.title')}
           ></iframe>
         </div>
 

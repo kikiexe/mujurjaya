@@ -2,8 +2,11 @@
 
 import { Mail, Phone, Instagram } from 'lucide-react';
 import { ptSerif } from '@/fonts';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-[#293241] text-white">
       <div className="container mx-auto px-4 py-10">
@@ -13,14 +16,13 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-regular mb-4">MUJUR JAYA</h3>
             <p className="text-gray-300 leading-relaxed">
-              Produsen mie sohun premium terpercaya yang berkomitmen menghadirkan produk terbaik 
-              untuk kebutuhan ekspor Anda di seluruh Indonesia.
+              {t('footer.company.desc')}
             </p>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-regular mb-4">Kontak Kami</h3>
+            <h3 className="text-lg font-regular mb-4">{t('footer.contact.title')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-white" />
@@ -43,7 +45,7 @@ export default function Footer() {
                   rel="noopener noreferrer" 
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  @mujurjaya
+                  @mujurjaya_kroya
                 </a>
               </li>
             </ul>
@@ -51,7 +53,7 @@ export default function Footer() {
 
           {/* Location */}
           <div>
-            <h3 className="text-lg font-regular mb-4">Lokasi Kami</h3>
+            <h3 className="text-lg font-regular mb-4">{t('footer.location.title')}</h3>
             {/* Google Maps Mini Embed - Lebar penuh, tinggi dikurangi */}
             <div className="w-full h-60 overflow-hidden">
               <iframe
@@ -62,7 +64,7 @@ export default function Footer() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Lokasi Pabrik Sohun Gelang Indah"
+                title={t('footer.location.title')}
               ></iframe>
             </div>
           </div>
@@ -76,10 +78,10 @@ export default function Footer() {
           <div className="border-t border-gray-700 pt-3 w-full max-w-md mx-auto">
             <p>
               <span className={`${ptSerif.className} font-bold block`}>
-                © 2025 PT Mujur Jaya
+                {t('footer.copyright')}
               </span>
               <span className="block mt-1">
-                Premium Glass Noodle Manufacturer & Exporter. All Rights Reserved
+                {t('footer.tagline')}
               </span>
             </p>
           </div>
