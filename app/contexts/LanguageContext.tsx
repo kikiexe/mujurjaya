@@ -1,4 +1,3 @@
-// app/contexts/LanguageContext.tsx
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
@@ -13,7 +12,6 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Translations object
 const translations = {
   // Navbar
   'nav.home': {
@@ -148,16 +146,16 @@ const translations = {
     ID: 'Mujur Jaya bermula dari visi sederhana: menghadirkan mie sohun berkualitas tinggi yang menghubungkan tradisi kuliner Indonesia dengan pasar global. Dengan dedikasi terhadap kualitas dan inovasi, kami telah tumbuh menjadi produsen terkemuka yang dipercaya oleh mitra ekspor di seluruh dunia.',
     EN: 'Mujur Jaya started with a simple vision: to present high-quality glass noodles that connect Indonesian culinary traditions with the global market. With dedication to quality and innovation, we have grown into a leading manufacturer trusted by export partners worldwide.'
   },
-  'about.stats.farmers': {
-    ID: 'Farmers Spread',
-    EN: 'Farmers Spread'
+  'about.stats.tons': {
+    ID: 'Ton Produksi per Tahun',
+    EN: 'Tons per Years'
   },
-  'about.stats.countries': {
-    ID: 'Export Countries',
-    EN: 'Export Countries'
+  'about.stats.cities': {
+    ID: 'Kota Ekspor',
+    EN: 'Export Cities'
   },
   'about.stats.experience': {
-    ID: 'Years Experience',
+    ID: 'Tahun Pengalaman',
     EN: 'Years Experience'
   },
   'about.cert.subtitle': {
@@ -311,7 +309,6 @@ const translations = {
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('ID');
 
-  // Load language from localStorage on mount
   useEffect(() => {
     const savedLang = localStorage.getItem('language') as Language;
     if (savedLang && (savedLang === 'ID' || savedLang === 'EN')) {
@@ -319,13 +316,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Save language to localStorage when it changes
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
     localStorage.setItem('language', lang);
   };
 
-  // Translation function
   const t = (key: string): string => {
     const translation = translations[key as keyof typeof translations];
     if (!translation) return key;
