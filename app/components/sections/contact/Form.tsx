@@ -49,21 +49,21 @@ export default function Form() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 xl:gap-16">
           
           {/* Form kontak */}
-          <div className="md:col-span-3">
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-[#4971D5] to-[#37D2FA] bg-clip-text text-transparent mb-2">
+          <div className="lg:col-span-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#4971D5] to-[#37D2FA] bg-clip-text text-transparent mb-2 sm:mb-3">
               {t('contact.form.title')}
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-600 text-sm sm:text-base mb-6 sm:mb-8">
               {t('contact.form.subtitle')}
             </p>
             
-            <form className="space-y-12" onSubmit={handleSubmit}>
+            <form className="space-y-8 sm:space-y-10 lg:space-y-12" onSubmit={handleSubmit}>
               
               {/* Input nama */}
               <div className="relative">
@@ -74,8 +74,9 @@ export default function Form() {
                   value={nama}
                   onChange={(e) => setNama(e.target.value)}
                   required
-                  className="peer relative z-10 block w-full p-2 bg-transparent border-0
-                             appearance-none focus:outline-none focus:ring-0 focus:border-transparent"
+                  className="peer relative z-10 block w-full p-2 sm:p-3 bg-transparent border-0
+                             appearance-none focus:outline-none focus:ring-0 focus:border-transparent
+                             text-sm sm:text-base"
                   placeholder=" " 
                 />
                 <label 
@@ -84,7 +85,7 @@ export default function Form() {
                              -translate-y-6 scale-75 top-3 origin-[0] 
                              peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 
                              peer-focus:scale-75 peer-focus:-translate-y-6
-                             peer-focus:text-[#216FA8]"
+                             peer-focus:text-[#216FA8] text-sm sm:text-base"
                 >
                   {t('contact.form.name')}
                 </label>
@@ -105,8 +106,9 @@ export default function Form() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="peer relative z-10 block w-full p-2 bg-transparent border-0
-                             appearance-none focus:outline-none focus:ring-0 focus:border-transparent"
+                  className="peer relative z-10 block w-full p-2 sm:p-3 bg-transparent border-0
+                             appearance-none focus:outline-none focus:ring-0 focus:border-transparent
+                             text-sm sm:text-base"
                   placeholder=" "
                 />
                 <label 
@@ -115,7 +117,7 @@ export default function Form() {
                              -translate-y-6 scale-75 top-3 origin-[0] 
                              peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 
                              peer-focus:scale-75 peer-focus:-translate-y-6
-                             peer-focus:text-[#216FA8]"
+                             peer-focus:text-[#216FA8] text-sm sm:text-base"
                 >
                   {t('contact.form.email')}
                 </label>
@@ -136,8 +138,9 @@ export default function Form() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
-                  className="peer relative z-10 block w-full p-2 bg-transparent border-0
-                             appearance-none focus:outline-none focus:ring-0 focus:border-transparent"
+                  className="peer relative z-10 block w-full p-2 sm:p-3 bg-transparent border-0
+                             appearance-none focus:outline-none focus:ring-0 focus:border-transparent
+                             text-sm sm:text-base resize-none"
                   placeholder=" "
                 />
                 <label 
@@ -146,7 +149,7 @@ export default function Form() {
                              -translate-y-6 scale-75 top-3 origin-[0] 
                              peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 
                              peer-focus:scale-75 peer-focus:-translate-y-6
-                             peer-focus:text-[#216FA8]"
+                             peer-focus:text-[#216FA8] text-sm sm:text-base"
                 >
                   {t('contact.form.message')}
                 </label>
@@ -159,26 +162,27 @@ export default function Form() {
               </div>
               
               {/* Status dan tombol submit */}
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
                 {/* Pesan status */}
-                <div>
+                <div className="flex-1">
                   {status === 'success' && (
-                    <p className="text-green-600">{statusMessage}</p>
+                    <p className="text-green-600 text-sm sm:text-base">{statusMessage}</p>
                   )}
                   {status === 'error' && (
-                    <p className="text-red-600">{statusMessage}</p>
+                    <p className="text-red-600 text-sm sm:text-base">{statusMessage}</p>
                   )}
                 </div>
                 
                 {/* Tombol submit */}
-                <div className="flex justify-end">
+                <div className="flex justify-end w-full sm:w-auto">
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="bg-[#216FA8] text-white font-semibold px-8 py-3 rounded-lg 
+                    className="bg-[#216FA8] text-white font-semibold px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg 
                                hover:bg-[#1C5C8C] transition-all duration-300 
                                shadow-lg hover:shadow-xl transform hover:-translate-y-0.5
-                               disabled:bg-gray-400 disabled:cursor-not-allowed"
+                               disabled:bg-gray-400 disabled:cursor-not-allowed
+                               w-full sm:w-auto text-sm sm:text-base"
                   >
                     {status === 'loading' ? t('contact.form.sending') : t('contact.form.submit')}
                   </button>
@@ -189,30 +193,30 @@ export default function Form() {
           </div>
           
           {/* Informasi kontak */}
-          <div className="md:col-span-2 md:pl-12 md:border-l border-gray-200">
-            <div className="mb-12">
-              <h3 className="text-2xl font-bold text-[#216FA8] mb-4">
+          <div className="lg:col-span-2 lg:pl-8 xl:pl-12 border-t lg:border-t-0 lg:border-l border-gray-200 pt-8 lg:pt-0">
+            <div className="mb-8 sm:mb-10 lg:mb-12">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#216FA8] mb-3 sm:mb-4">
                 {t('contact.call.title')}
               </h3>
-              <p className="text-gray-800 mb-4">
+              <p className="text-gray-800 text-sm sm:text-base mb-3 sm:mb-4">
                 {t('contact.call.desc')}
               </p>
               <div className="flex items-center gap-3 text-gray-800">
-                <Phone size={30} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-2 flex-shrink-0" />
-                <span className="font-medium">0821-1807-7079</span>
+                <Phone size={24} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-1.5 sm:p-2 flex-shrink-0" />
+                <span className="font-medium text-sm sm:text-base">0821-1807-7079</span>
               </div>
             </div>
             
             <div>
-              <h3 className="text-2xl font-bold text-[#216FA8] mb-4">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#216FA8] mb-3 sm:mb-4">
                 {t('contact.visit.title')}
               </h3>
-              <p className="text-gray-800 mb-4">
+              <p className="text-gray-800 text-sm sm:text-base mb-3 sm:mb-4">
                 {t('contact.visit.desc')}
               </p>
-              <div className="flex items-center gap-3 text-gray-800">
-                <MapPin size={30} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-2 flex-shrink-0" />
-                <span className="font-medium">
+              <div className="flex items-start gap-3 text-gray-800">
+                <MapPin size={24} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-1.5 sm:p-2 flex-shrink-0 mt-0.5" />
+                <span className="font-medium text-sm sm:text-base leading-relaxed">
                   Jl. Raya Mujur-Kroya Rt 09/01 Kec. Kroya, Kab. Cilacap Jawa Tengah Indonesia
                 </span>
               </div>
