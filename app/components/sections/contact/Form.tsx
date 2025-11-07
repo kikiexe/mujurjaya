@@ -194,12 +194,12 @@ export default function Form() {
               <h3 className="text-2xl font-bold text-[#216FA8] mb-4">
                 {t('contact.call.title')}
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-800 mb-4">
                 {t('contact.call.desc')}
               </p>
               <div className="flex items-center gap-3 text-gray-800">
                 <Phone size={30} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-2 flex-shrink-0" />
-                <span className="font-medium">+62 123-456-7890</span>
+                <span className="font-medium">0821-1807-7079</span>
               </div>
             </div>
             
@@ -207,13 +207,13 @@ export default function Form() {
               <h3 className="text-2xl font-bold text-[#216FA8] mb-4">
                 {t('contact.visit.title')}
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-800 mb-4">
                 {t('contact.visit.desc')}
               </p>
               <div className="flex items-center gap-3 text-gray-800">
                 <MapPin size={30} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-2 flex-shrink-0" />
                 <span className="font-medium">
-                  Jl. Selayar, Jawa Tengah, Indonesia
+                  Jl. Raya Mujur-Kroya Rt 09/01 Kec. Kroya, Kab. Cilacap Jawa Tengah Indonesia
                 </span>
               </div>
             </div>

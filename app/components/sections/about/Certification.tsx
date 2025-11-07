@@ -9,17 +9,17 @@ export default function Certification() {
   const certifications = [
     {
       key: 'about.cert.iso',
-      image: '/images/cert1.jpg',
+      image: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/BADAN_POM.png',
       alt: 'Sertifikasi ISO'
     },
     {
       key: 'about.cert.halal',
-      image: '/images/cert2.jpg',
+      image: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/Halal.svg',
       alt: 'Sertifikasi Halal'
     },
     {
       key: 'about.cert.haccp',
-      image: '/images/cert3.jpg',
+      image: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/BADAN_POM.png',
       alt: 'Sertifikasi HACCP'
     }
   ];
@@ -41,16 +41,18 @@ export default function Certification() {
         {/* Grid sertifikasi */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {certifications.map((cert, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-              <div className="w-full h-48 relative mb-4 rounded-lg overflow-hidden">
+            <div key={index} className=" p-6 flex flex-col items-center">
+              {/* Container gambar dengan fixed height dan proper alignment */}
+              <div className="w-32 h-32 md:w-40 md:h-40 relative mb-6 flex items-center justify-center">
                 <Image 
                   src={cert.image}
                   alt={cert.alt}
-                  fill
-                  className="object-cover"
+                  width={160}
+                  height={160}
+                  className="object-contain w-full h-full"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-center">
+              <h3 className="text-lg font-semibold text-center text-gray-800">
                 {t(cert.key)}
               </h3>
             </div>

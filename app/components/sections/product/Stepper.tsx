@@ -16,22 +16,22 @@ export default function Stepper() {
     {
       titleKey: 'product.step1.title',
       descriptionKey: 'product.step1.desc',
-      imageUrl: '/images/step-1-bahan-baku.png',
+      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg',
     },
     {
       titleKey: 'product.step2.title',
       descriptionKey: 'product.step2.desc',
-      imageUrl: '/images/step-2-pengolahan.png',
+      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg',
     },
     {
       titleKey: 'product.step3.title',
       descriptionKey: 'product.step3.desc',
-      imageUrl: '/images/step-3-pembentukan.png',
+      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg',
     },
     {
       titleKey: 'product.step4.title',
       descriptionKey: 'product.step4.desc',
-      imageUrl: '/images/step-4-pengemasan.png',
+      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg',
     },
   ];
 
@@ -172,7 +172,7 @@ export default function Stepper() {
                           {t(step.titleKey)}
                         </h3>
 
-                        {/* Gambar dengan animasi */}
+                        {/* Gambar dengan animasi - TETAP SAMA SEPERTI SEBELUMNYA */}
                         <div 
                           className={`transition-all duration-700 ease-out ${
                             isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
@@ -187,7 +187,8 @@ export default function Stepper() {
                               alt={t(step.titleKey)}
                               width={200}
                               height={200}
-                              className="object-contain w-full h-full"
+                              className="object-cover w-full h-full rounded-lg"
+                              priority={index === 0}
                             />
                           </div>
                         </div>
@@ -233,7 +234,7 @@ export default function Stepper() {
                         </>
                       )}
                       
-                      {/* Gambar step */}
+                      {/* Gambar step - TETAP SAMA SEPERTI SEBELUMNYA */}
                       <div className={`transition-all duration-700 ease-out ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} ${isEven ? 'md:order-1' : 'md:order-2'}`}>
                         <div className="bg-gray-100 rounded-lg shadow-lg p-6 flex justify-center items-center aspect-square">
                           <Image
@@ -241,7 +242,8 @@ export default function Stepper() {
                             alt={t(step.titleKey)}
                             width={200}
                             height={200}
-                            className="object-contain"
+                            className="object-cover w-full h-full rounded-lg"
+                            priority={index === 0}
                           />
                         </div>
                       </div>

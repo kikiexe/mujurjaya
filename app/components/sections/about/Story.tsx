@@ -27,7 +27,7 @@ export default function Story() {
           {/* Gambar ilustrasi */}
           <div className="relative">
              <Image
-              src="/images/hero-factory.jpg" 
+              src="https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg" 
               alt="Proses produksi Mujur Jaya"
               width={550}
               height={400}
