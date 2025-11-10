@@ -44,7 +44,7 @@ export default function Hero() {
           {/* Gambar hero */}
           <div className="relative order-1 lg:order-2">
              <Image
-              src="https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg" 
+              src="https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/home.jpg" 
               alt="Area penjemuran mie sohun di pabrik"
               width={550}
               height={400}

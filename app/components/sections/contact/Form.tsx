@@ -202,7 +202,7 @@ export default function Form() {
                 {t('contact.call.desc')}
               </p>
               <div className="flex items-center gap-3 text-gray-800">
-                <Phone size={24} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-1.5 sm:p-2 flex-shrink-0" />
+                <Phone size={30} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-1.5 sm:p-2 flex-shrink-0" />
                 <span className="font-medium text-sm sm:text-base">0821-1807-7079</span>
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function Form() {
                 {t('contact.visit.desc')}
               </p>
               <div className="flex items-start gap-3 text-gray-800">
-                <MapPin size={24} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-1.5 sm:p-2 flex-shrink-0 mt-0.5" />
+                <MapPin size={30} className="text-[#216FA8] bg-[#A9DBFF] rounded-full p-1.5 sm:p-2 flex-shrink-0 mt-0.5" />
                 <span className="font-medium text-sm sm:text-base leading-relaxed">
                   Jl. Raya Mujur-Kroya Rt 09/01 Kec. Kroya, Kab. Cilacap Jawa Tengah Indonesia
                 </span>

@@ -129,7 +129,7 @@ export default function Navbar() {
                     language === 'ID' 
                     ? (scrolled ? 'text-white font-bold' : 'text-[#216FA8] font-bold')
                     : (scrolled ? 'text-white/80 hover:bg-white/20' : 'text-[#828484] hover:bg-gray-200/50')
-                  }`}
+                  } cursor-pointer`}
                 >
                   ID
                 </button>
@@ -139,13 +139,12 @@ export default function Navbar() {
                     language === 'EN' 
                     ? (scrolled ? 'text-white font-bold' : 'text-[#216FA8] font-bold')
                     : (scrolled ? 'text-white/80 hover:bg-white/20' : 'text-[#828484] hover:bg-gray-200/50')
-                  }`}
+                  } cursor-pointer`} 
                 >
                   EN
                 </button>
               </div>
             </div>
-
             {/* Tombol hamburger mobile */}
             <div className="flex md:hidden items-center gap-3">
               <button 

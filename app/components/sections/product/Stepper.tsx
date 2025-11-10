@@ -16,22 +16,22 @@ export default function Stepper() {
     {
       titleKey: 'product.step1.title',
       descriptionKey: 'product.step1.desc',
-      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg',
+      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/home.jpg',
     },
     {
       titleKey: 'product.step2.title',
       descriptionKey: 'product.step2.desc',
-      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg',
+      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/home.jpg',
     },
     {
       titleKey: 'product.step3.title',
       descriptionKey: 'product.step3.desc',
-      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg',
+      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/home.jpg',
     },
     {
       titleKey: 'product.step4.title',
       descriptionKey: 'product.step4.desc',
-      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/wallpaperflare.com_wallpaper%20(1).jpg',
+      imageUrl: 'https://jboanawxorngsnjgmnwt.supabase.co/storage/v1/object/public/aset_mujur_jaya/home.jpg',
     },
   ];
 
