@@ -22,7 +22,7 @@ export default function Clients() {
 
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
@@ -30,12 +30,12 @@ export default function Clients() {
           </h2>
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-11 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-11 gap-2 sm:gap-3 md:gap-4">
           {clientLogos.map((logoUrl, index) => (
             
             <div 
               key={logoUrl}
-              className="rounded-lg sm:rounded-xl flex items-center justify-center aspect-square"
+              className="rounded-lg sm:rounded-xl flex items-center justify-center aspect-square transition-transform duration-300 hover:scale-105"
             >
               <img
                 src={logoUrl}
